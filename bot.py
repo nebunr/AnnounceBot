@@ -79,7 +79,7 @@ def error_time(read_date):
     return False
 
 
-async def check_time(read_date):
+async def check_time(read_date): # errors in polling, pls fix or you are sad
     while True:
         start = datetime.datetime.now() + datetime.timedelta(seconds=constants.POLL_INTERVAL)
         now = datetime.datetime.now()

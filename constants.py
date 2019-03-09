@@ -1,24 +1,20 @@
 #   from secrets import *  # not in use
 
-DISCORD_TOKEN = ''
-CHANNEL_INPUT = ''                # mod-log
-CHANNEL_OUTPUT_1 = ''             # ann
-CHANNEL_OUTPUT_2 = ''             # owl
-CHANNEL_OUTPUT_3 = ''             # owc
-CHANNEL_OUTPUT_4 = ''             # test
-CHANNEL_OUTPUT_DEFAULT = ''       # default
-POLL_INTERVAL = 1
+DISCORD_TOKEN = 'NTI2NTk1MTc4MDQ0MDYzNzQ1.D2SOhQ.sW89r_YO14uvG0nxIMDHTmUEYNw'
+CHANNEL_INPUT = '363897513431793676'                # mod-log
+CHANNEL_OUTPUT_DEFAULT = '363897513431793676'       # default
+POLL_INTERVAL = 10
 
 
 def get_ident(ident):
     if ident == 'ann':
-        ident = CHANNEL_OUTPUT_1
+        ident = '393326371411329024'             # ann
     elif ident == 'owl':
-        ident = CHANNEL_OUTPUT_2
+        ident = '393326427883307018'             # owl
     elif ident == 'owc':
-        ident = CHANNEL_OUTPUT_3
+        ident = '459293400730959872'             # owc
     elif ident == 'test':
-        ident = CHANNEL_OUTPUT_4
+        ident = '528657263683043328'             # test
     else:
         print("Invalid channel alias given")
         ident = CHANNEL_OUTPUT_DEFAULT

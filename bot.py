@@ -1,18 +1,20 @@
 #!/usr/bin/python
 
+#Header Files
 import constants    # constants.py needed
 
 import datetime     # pip install DateTime
 import discord      # pip install discord.py
 
+#Start Discord bot
 client = discord.Client()
 
-
-@client.event
+#When bot starts
+@client.event 
 async def on_ready():
     print("Bot is online at:", datetime.datetime.now())
 
-
+#Read in message
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -31,7 +33,7 @@ async def on_message(message):
             await check_time(read_date)
         await client.send_message(client.get_channel(ident), msg)
 
-
+#Parses string for time
 def store_time(msg, read_date, ident):
     msg = msg.replace("!read ", "")
     temp_msg = msg.split(";")[0]
@@ -55,11 +57,11 @@ def store_time(msg, read_date, ident):
         read_date[5] = temp_msg
 
     read_date = [int(x) for x in read_date]
-    print(read_date[0], read_date[1], read_date[2], read_date[3], read_date[4], read_date[5], ident)
+    print('Year:', read_date[0], 'Month:', read_date[1], 'Day:', read_date[2], 'Hour:', read_date[3], 'Minute:', read_date[4], 'Second:', read_date[5], 'Channel:', ident)
 
     return msg, read_date, ident
 
-
+#Verify if time given has not yet past
 def error_time(read_date):
     now = datetime.datetime.now()
     if now.year > read_date[0]:
@@ -78,7 +80,7 @@ def error_time(read_date):
                         return True
     return False
 
-
+#Poll the current time and loop until set time is reached
 async def check_time(read_date):    # errors in polling, pls fix or you are sad
     while True:
         start = datetime.datetime.now() + datetime.timedelta(seconds=constants.POLL_INTERVAL)
@@ -89,8 +91,9 @@ async def check_time(read_date):    # errors in polling, pls fix or you are sad
                 return
 
 
+#Main Function
 if __name__ == '__main__':
     print("Starting bot at:", datetime.datetime.now())
     client.run(constants.DISCORD_TOKEN)
     print("Ending bot at:", datetime.datetime.now())
-# AnnounceBot
+
